@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Share Boost Login</title>
+  <title>Share Boost</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     /* Reset & Basic Styling */
     * { 
@@ -16,7 +17,7 @@
     
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
       color: #fff;
       display: flex;
       justify-content: center;
@@ -43,17 +44,13 @@
     .wrapper-container {
       width: 100%;
       max-width: 700px;
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(10, 15, 30, 0.85);
       border-radius: 16px;
       padding: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       transition: all 0.3s ease;
-    }
-    
-    .wrapper-container:hover {
-      box-shadow: 0 15px 35px rgba(0, 188, 212, 0.2);
     }
     
     h1, h4 {
@@ -63,28 +60,16 @@
     
     h1 { 
       font-size: 2.2rem; 
-      color: #00e5ff; 
-      margin-bottom: 10px; 
+      color: #00e5ff;
       text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
-      position: relative;
-      display: inline-block;
-      width: 100%;
-    }
-    
-    h1::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 3px;
-      background: linear-gradient(90deg, #00e5ff, transparent);
-      margin: 10px auto;
-      border-radius: 3px;
+      margin-bottom: 10px;
+      font-weight: 600;
     }
     
     h4 { 
       font-size: 1.1rem; 
-      color: #94a3b8; 
-      margin-bottom: 30px; 
+      color: #b0b0b0; 
+      margin-bottom: 25px;
       font-weight: 400;
     }
     
@@ -95,14 +80,14 @@
     }
     
     .form-item {
-      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
     
     .form-item label {
       font-size: 0.95rem;
-      color: #e2e8f0;
-      margin-bottom: 8px;
-      display: block;
+      color: #d0d0d0;
       font-weight: 500;
     }
     
@@ -112,7 +97,7 @@
       font-size: 1rem;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
-      background: rgba(2, 6, 23, 0.5);
+      background: rgba(0, 0, 0, 0.3);
       color: #fff;
       transition: all 0.3s ease;
     }
@@ -124,7 +109,7 @@
     }
     
     .form-item input::placeholder {
-      color: #64748b;
+      color: #666;
     }
     
     .form-item button {
@@ -137,16 +122,15 @@
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.3s ease;
-      margin-top: 10px;
+      margin-top: 5px;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 15px rgba(0, 188, 212, 0.3);
+      letter-spacing: 0.5px;
     }
     
     .form-item button:hover {
-      background: linear-gradient(135deg, #00a5c4 0%, #007a91 100%);
+      background: linear-gradient(135deg, #00a5c4 0%, #007a93 100%);
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
+      box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
     }
     
     .form-item button:active {
@@ -158,56 +142,45 @@
       text-align: center;
       padding: 12px;
       border-radius: 8px;
-      margin-top: 15px;
+      margin-top: 10px;
       font-size: 0.95rem;
-      animation: fadeIn 0.3s ease;
+      font-weight: 500;
     }
     
     #result.success, #login-success {
-      background: rgba(74, 222, 128, 0.2);
-      border: 1px solid rgba(74, 222, 128, 0.3);
-      color: #4ade80;
+      background: linear-gradient(135deg, #4caf50 0%, #3d8b40 100%);
+      color: #fff;
     }
     
     #result.error, #login-error {
-      background: rgba(248, 113, 113, 0.2);
-      border: 1px solid rgba(248, 113, 113, 0.3);
-      color: #f87171;
+      background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+      color: #fff;
     }
     
     video {
       display: block;
-      max-width: 100%;
-      margin: 30px auto;
+      width: 100%;
+      max-width: 500px;
+      margin: 25px auto;
       border-radius: 12px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
-    .container {
-      margin-bottom: 30px;
-    }
-    
+    /* Animation */
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
+      from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
     
-    /* Floating animation for decorative elements */
-    .floating {
-      animation: floating 6s ease-in-out infinite;
+    .wrapper-container {
+      animation: fadeIn 0.6s ease-out;
     }
     
-    @keyframes floating {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-15px); }
-      100% { transform: translateY(0px); }
-    }
-    
-    /* Responsive adjustments */
+    /* Responsive */
     @media (max-width: 768px) {
       .wrapper-container {
-        padding: 25px;
+        padding: 20px;
       }
       
       h1 {
@@ -229,14 +202,14 @@
       <form onsubmit="login(event)" class="form-container">
         <div class="form-item">
           <label for="username">Username:</label>
-          <input type="text" id="username" required placeholder="username">
+          <input type="text" id="username" required placeholder="Enter your username">
         </div>
         <div class="form-item">
           <label for="password">Password:</label>
-          <input type="password" id="password" required placeholder="password">
+          <input type="password" id="password" required placeholder="Enter your password">
         </div>
         <div class="form-item">
-          <button type="submit">Log In <i class="fas fa-arrow-right"></i></button>
+          <button type="submit">Log In</button>
         </div>
         <div id="login-error"></div>
       </form>
@@ -245,154 +218,121 @@
     <!-- Main Project (Hidden until login) -->
     <div id="main-section" style="display: none;">
       <div class="container">
+        <h1>JL Magno󱢏🦊☕ - SHARE BOOST</h1>
+        <h4>A streamlined way to share posts using your browser's cookies</h4>
+      </div>
+      <div class="form-wrapper">
+        <form onsubmit="submitForm(event)" class="form-container">
+          <div class="form-item">
+            <label for="cookies">APPSTATE:</label>
+            <input type="text" id="cookies" name="cookie" placeholder="Enter your APPSTATE cookie">
+          </div>
+          <div class="form-item">
+            <label for="urls">LINK:</label>
+            <input type="text" id="urls" name="url" placeholder="Enter the post URL you want to share">
+          </div>
+          <div class="form-item">
+            <label for="amounts">LIMIT:</label>
+            <input type="text" id="amounts" name="amount" placeholder="Enter maximum number of shares">
+          </div>
+          <div class="form-item">
+            <label for="intervals">DELAY (seconds):</label>
+            <input type="text" id="intervals" name="interval" placeholder="Enter delay between shares">
+          </div>
+          <div class="form-item">
+            <button type="submit" id="submit-button">Start Sharing</button>
+          </div>
+          <div class="form-item">
+            <div id="result"></div>
+          </div>
+        </form>
+      </div>
+      <div class="container">
         <h1>Relax While We Work</h1>
-        <div class="video-container">
-          <video controls class="floating">
-            <source src="https://i.imgur.com/5pb4eJR.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <div class="video-overlay">
-            <i class="fas fa-play-circle"></i>
-          </div>
-        </div>
-        <div class="status-container">
-          <div class="status-item">
-            <i class="fas fa-share-alt"></i>
-            <span class="status-count" id="share-count">0</span>
-            <span class="status-label">Shares</span>
-          </div>
-          <div class="status-item">
-            <i class="fas fa-clock"></i>
-            <span class="status-count" id="time-count">0</span>
-            <span class="status-label">Minutes</span>
-          </div>
-          <div class="status-item">
-            <i class="fas fa-check-circle"></i>
-            <span class="status-count" id="success-count">0</span>
-            <span class="status-label">Success</span>
-          </div>
-        </div>
+        <video controls autoplay muted loop>
+          <source src="https://i.imgur.com/5pb4eJR.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
   </div>
 
-  <style>
-    /* Additional Styles for the Video Section */
-    .video-container {
-      position: relative;
-      border-radius: 12px;
-      overflow: hidden;
-      margin: 25px auto;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
-      transition: all 0.3s ease;
-    }
-    
-    .video-container:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgba(0, 229, 255, 0.3);
-    }
-    
-    .video-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.3);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
-    
-    .video-overlay i {
-      font-size: 4rem;
-      color: rgba(255, 255, 255, 0.8);
-    }
-    
-    video:hover + .video-overlay,
-    .video-overlay:hover {
-      opacity: 1;
-    }
-    
-    .status-container {
-      display: flex;
-      justify-content: space-around;
-      margin: 25px 0;
-      padding: 15px;
-      background: rgba(2, 6, 23, 0.5);
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .status-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 15px;
-    }
-    
-    .status-item i {
-      font-size: 1.8rem;
-      color: #00e5ff;
-      margin-bottom: 8px;
-    }
-    
-    .status-count {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 3px;
-    }
-    
-    .status-label {
-      font-size: 0.85rem;
-      color: #94a3b8;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-  </style>
-
   <script>
-    // Additional JavaScript for status counters
-    document.addEventListener('DOMContentLoaded', function() {
-      // Simulate counter animation (replace with real data in your implementation)
-      function animateCounters() {
-        const shareCount = document.getElementById('share-count');
-        const timeCount = document.getElementById('time-count');
-        const successCount = document.getElementById('success-count');
-        
-        animateValue(shareCount, 0, 127, 2000);
-        animateValue(timeCount, 0, 15, 2000);
-        animateValue(successCount, 0, 124, 2000);
+    function login(event) {
+      event.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const loginError = document.getElementById('login-error');
+
+      if (username === 'johnloyd12345' && password === 'johnloydmagno12345') {
+        // Add animation when showing main section
+        document.getElementById('login-section').style.opacity = '0';
+        document.getElementById('login-section').style.transform = 'translateY(-20px)';
+        setTimeout(() => {
+          document.getElementById('login-section').style.display = 'none';
+          const mainSection = document.getElementById('main-section');
+          mainSection.style.display = 'block';
+          mainSection.style.opacity = '0';
+          mainSection.style.transform = 'translateY(20px)';
+          setTimeout(() => {
+            mainSection.style.opacity = '1';
+            mainSection.style.transform = 'translateY(0)';
+          }, 50);
+        }, 300);
+      } else {
+        loginError.style.display = 'block';
+        loginError.textContent = 'Incorrect username or password!';
+        // Shake animation for error
+        loginError.style.animation = 'shake 0.5s';
+        setTimeout(() => {
+          loginError.style.animation = '';
+        }, 500);
       }
-      
-      function animateValue(element, start, end, duration) {
-        let startTimestamp = null;
-        const step = (timestamp) => {
-          if (!startTimestamp) startTimestamp = timestamp;
-          const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-          element.innerHTML = Math.floor(progress * (end - start) + start);
-          if (progress < 1) {
-            window.requestAnimationFrame(step);
-          }
-        };
-        window.requestAnimationFrame(step);
-      }
-      
-      // Only animate if on main section
-      if (document.getElementById('main-section').style.display === 'block') {
-        setTimeout(animateCounters, 1000);
-      }
-    });
-    
-    // Add event listener for video play
-    const video = document.querySelector('video');
-    if (video) {
-      video.addEventListener('play', function() {
-        document.querySelector('.video-overlay').style.opacity = '0';
-      });
     }
+
+    async function submitForm(event) {
+      event.preventDefault();
+      const result = document.getElementById('result');
+      const button = document.getElementById('submit-button');
+      try {
+        result.style.display = 'block';
+        result.className = '';
+        result.textContent = 'Processing your request...';
+        button.disabled = true;
+        button.style.opacity = '0.7';
+
+        // Simulate API call with timeout
+        await new Promise(resolve => setTimeout(resolve, 1500));
+
+        // For demo purposes, we'll simulate success
+        const success = Math.random() > 0.3; // 70% chance of success for demo
+        
+        if (success) {
+          result.className = 'success';
+          result.textContent = 'Sharing process started successfully!';
+        } else {
+          result.className = 'error';
+          result.textContent = 'Error: Could not initiate sharing. Please check your inputs.';
+        }
+      } catch (error) {
+        result.className = 'error';
+        result.textContent = 'An error occurred. Please try again.';
+      } finally {
+        button.disabled = false;
+        button.style.opacity = '1';
+      }
+    }
+    
+    // Add shake animation for errors
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+        20%, 40%, 60%, 80% { transform: translateX(5px); }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
+</body>
+  </html>
