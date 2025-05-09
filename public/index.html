@@ -3,186 +3,260 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Share Boost</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <title>SHARE BOOST</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    /* Reset & Basic Styling */
-    * { 
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box; 
+    /* Cyberpunk Base */
+    :root {
+      --neon-blue: #0ff0fc;
+      --neon-pink: #ff2a6d;
+      --neon-purple: #d300c5;
+      --dark-bg: #0a0a12;
+      --darker-bg: #050508;
+      --panel-glow: radial-gradient(circle at center, rgba(15, 240, 252, 0.15) 0%, transparent 70%);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
     
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-      color: #fff;
+      font-family: 'Rajdhani', sans-serif;
+      background-color: var(--dark-bg);
+      color: white;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
       padding: 20px;
       position: relative;
-      overflow-x: hidden;
+      overflow: hidden;
     }
     
+    /* Cyberpunk Grid Background */
     body::before {
-      content: '';
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://media4.giphy.com/media/XaLnoepP2IwFnUXdvb/giphy.gif') no-repeat center center;
-      background-size: cover;
-      opacity: 0.15;
+      background: 
+        linear-gradient(rgba(15, 240, 252, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 240, 252, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: -2;
+    }
+    
+    /* Animated Scanlines */
+    body::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        transparent 95%,
+        rgba(15, 240, 252, 0.05) 96%,
+        transparent 97%
+      );
+      background-size: 100% 10px;
+      animation: scan 4s linear infinite;
+      pointer-events: none;
       z-index: -1;
     }
     
+    @keyframes scan {
+      0% { background-position: 0 0; }
+      100% { background-position: 0 10px; }
+    }
+    
+    /* Main Container */
     .wrapper-container {
       width: 100%;
-      max-width: 700px;
-      background: rgba(10, 15, 35, 0.85);
-      border-radius: 16px;
+      max-width: 750px;
+      background: rgba(5, 5, 8, 0.85);
+      border: 1px solid var(--neon-blue);
+      border-radius: 0;
       padding: 30px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
+      box-shadow: 
+        0 0 15px rgba(15, 240, 252, 0.3),
+        0 0 30px rgba(15, 240, 252, 0.1),
+        inset 0 0 15px rgba(15, 240, 252, 0.2);
+      position: relative;
+      overflow: hidden;
     }
     
-    .wrapper-container:hover {
-      box-shadow: 0 15px 40px rgba(0, 188, 212, 0.2);
+    /* Neon Corner Accents */
+    .wrapper-container::before,
+    .wrapper-container::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border: 2px solid var(--neon-blue);
+      pointer-events: none;
     }
     
-    h1, h4 {
+    .wrapper-container::before {
+      top: 10px;
+      left: 10px;
+      border-right: none;
+      border-bottom: none;
+    }
+    
+    .wrapper-container::after {
+      bottom: 10px;
+      right: 10px;
+      border-left: none;
+      border-top: none;
+    }
+    
+    /* Typography */
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2.5rem;
+      color: var(--neon-blue);
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-shadow: 0 0 10px var(--neon-blue);
+      font-weight: 700;
     }
     
-    h1 { 
-      font-size: 2.2rem; 
-      color: #00e5ff; 
-      margin-bottom: 10px;
-      text-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
-      font-weight: 600;
-    }
-    
-    h4 { 
-      font-size: 1.1rem; 
-      color: #b0bec5; 
+    h4 {
+      font-size: 1.2rem;
+      color: #b0bec5;
+      text-align: center;
       margin-bottom: 30px;
       font-weight: 300;
+      letter-spacing: 1px;
     }
     
+    /* Form Elements */
     .form-container {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 25px;
     }
     
     .form-item label {
-      font-size: 0.95rem;
-      color: #b0bec5;
       display: block;
+      font-size: 1rem;
+      color: var(--neon-blue);
       margin-bottom: 8px;
-      font-weight: 400;
+      letter-spacing: 1px;
+      font-weight: 500;
     }
     
     .form-item input {
       width: 100%;
-      padding: 12px 15px;
+      padding: 14px;
       font-size: 1rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      background: rgba(0, 0, 0, 0.3);
-      color: #fff;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid #333;
+      border-radius: 0;
+      color: white;
+      font-family: 'Rajdhani', sans-serif;
       transition: all 0.3s ease;
-      font-family: 'Poppins', sans-serif;
+      border-left: 3px solid var(--neon-blue);
     }
     
     .form-item input:focus {
       outline: none;
-      border-color: #00bcd4;
-      box-shadow: 0 0 0 2px rgba(0, 188, 212, 0.2);
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 15px rgba(15, 240, 252, 0.3);
+      background: rgba(0, 0, 0, 0.7);
     }
     
     .form-item input::placeholder {
       color: #546e7a;
+      font-style: italic;
     }
     
     .form-item button {
-      background: linear-gradient(135deg, #00bcd4 0%, #008ba3 100%);
-      color: #fff;
-      padding: 12px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 8px;
+      width: 100%;
+      padding: 14px;
+      font-size: 1.1rem;
+      background: transparent;
+      color: var(--neon-blue);
+      border: 2px solid var(--neon-blue);
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       cursor: pointer;
       transition: all 0.3s ease;
-      font-weight: 500;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      font-family: 'Poppins', sans-serif;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+      margin-top: 10px;
     }
     
     .form-item button:hover {
-      background: linear-gradient(135deg, #00acc1 0%, #007c91 100%);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0, 188, 212, 0.2);
+      background: rgba(15, 240, 252, 0.1);
+      text-shadow: 0 0 10px var(--neon-blue);
+      box-shadow: 0 0 20px rgba(15, 240, 252, 0.4);
     }
     
-    .form-item button:active {
-      transform: translateY(0);
+    .form-item button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(15, 240, 252, 0.4), transparent);
+      transition: 0.5s;
     }
     
+    .form-item button:hover::before {
+      left: 100%;
+    }
+    
+    /* Status Messages */
     #result, #login-error {
       display: none;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 0;
       text-align: center;
-      padding: 12px;
-      border-radius: 8px;
-      margin-top: 10px;
-      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 1px;
     }
     
     #result.success, #login-success {
-      background: rgba(76, 175, 80, 0.2);
-      border: 1px solid #4caf50;
-      color: #a5d6a7;
+      background: rgba(0, 255, 100, 0.1);
+      border: 1px solid #00ff64;
+      color: #00ff64;
     }
     
     #result.error, #login-error {
-      background: rgba(244, 67, 54, 0.2);
-      border: 1px solid #f44336;
-      color: #ffab91;
+      background: rgba(255, 0, 64, 0.1);
+      border: 1px solid var(--neon-pink);
+      color: var(--neon-pink);
     }
     
+    /* Video Container */
     video {
-      display: block;
-      max-width: 100%;
+      width: 100%;
+      max-width: 600px;
       margin: 30px auto;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: block;
+      border: 1px solid var(--neon-blue);
+      box-shadow: 0 0 20px rgba(15, 240, 252, 0.3);
     }
     
-    /* Animation */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    /* Login/Main Transition */
+    #login-section, #main-section {
+      transition: opacity 0.5s ease;
     }
     
-    .wrapper-container {
-      animation: fadeIn 0.6s ease-out forwards;
-    }
-    
-    /* Responsive adjustments */
+    /* Responsive Adjustments */
     @media (max-width: 768px) {
-      .wrapper-container {
-        padding: 20px;
-      }
-      
       h1 {
         font-size: 1.8rem;
       }
@@ -190,6 +264,46 @@
       h4 {
         font-size: 1rem;
       }
+      
+      .wrapper-container {
+        padding: 20px;
+      }
+    }
+    
+    /* Cyberpunk Glitch Effect (Optional) */
+    .glitch {
+      position: relative;
+    }
+    
+    .glitch::before, .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.8;
+    }
+    
+    .glitch::before {
+      color: #0ff;
+      z-index: -1;
+      animation: glitch-effect 3s infinite;
+    }
+    
+    .glitch::after {
+      color: #f0f;
+      z-index: -2;
+      animation: glitch-effect 2s infinite reverse;
+    }
+    
+    @keyframes glitch-effect {
+      0% { transform: translate(0); }
+      20% { transform: translate(-3px, 3px); }
+      40% { transform: translate(-3px, -3px); }
+      60% { transform: translate(3px, 3px); }
+      80% { transform: translate(3px, -3px); }
+      100% { transform: translate(0); }
     }
   </style>
 </head>
@@ -197,18 +311,18 @@
   <div class="wrapper-container">
     <!-- Login Form -->
     <div id="login-section">
-      <h1>Login</h1>
+      <h1 class="glitch" data-text="LOGIN">LOGIN</h1>
       <form onsubmit="login(event)" class="form-container">
         <div class="form-item">
-          <label for="username">Username:</label>
-          <input type="text" id="username" required placeholder="Enter username">
+          <label for="username">USERNAME:</label>
+          <input type="text" id="username" required placeholder="ENTER YOUR USERNAME">
         </div>
         <div class="form-item">
-          <label for="password">Password:</label>
-          <input type="password" id="password" required placeholder="Enter password">
+          <label for="password">PASSWORD:</label>
+          <input type="password" id="password" required placeholder="••••••••••••">
         </div>
         <div class="form-item">
-          <button type="submit">Log In</button>
+          <button type="submit">LOGIN</button>
         </div>
         <div id="login-error"></div>
       </form>
@@ -217,29 +331,29 @@
     <!-- Main Project (Hidden until login) -->
     <div id="main-section" style="display: none;">
       <div class="container">
-        <h1>JL Magno󱢏🦊☕-SHARE BOOST</h1>
-        <h4>A streamlined way to share posts using your browser's cookies.</h4>
+        <h1 class="glitch" data-text="SHARE BOOST">SHARE BOOST</h1>
+        <h4>SYSTEM INITIALIZED: READY FOR COOKIE INJECTION</h4>
       </div>
       <div class="form-wrapper">
         <form onsubmit="submitForm(event)" class="form-container">
           <div class="form-item">
             <label for="cookies">APPSTATE:</label>
-            <input type="text" id="cookies" name="cookie" placeholder="Enter your APPSTATE">
+            <input type="text" id="cookies" name="cookie" placeholder="ENTER YOUR APPSTATE">
           </div>
           <div class="form-item">
             <label for="urls">LINK:</label>
-            <input type="text" id="urls" name="url" placeholder="Enter the post URL">
+            <input type="text" id="urls" name="url" placeholder="ENTER POST URL">
           </div>
           <div class="form-item">
-            <label for="amounts">LIMIT:</label>
-            <input type="text" id="amounts" name="amount" placeholder="Enter share limit">
+            <label for="amounts">LEMIT:</label>
+            <input type="text" id="amounts" name="amount" placeholder="MAXIMUM SHARE COUNT">
           </div>
           <div class="form-item">
             <label for="intervals">DELAY:</label>
-            <input type="text" id="intervals" name="interval" placeholder="Enter delay in seconds">
+            <input type="text" id="intervals" name="interval" placeholder="SECONDS BETWEEN SHARES">
           </div>
           <div class="form-item">
-            <button type="submit" id="submit-button">Submit</button>
+            <button type="submit" id="submit-button">SUBMIT</button>
           </div>
           <div class="form-item">
             <div id="result"></div>
@@ -247,15 +361,16 @@
         </form>
       </div>
       <div class="container">
-        <h1>Relax</h1>
+        <h1>SYSTEM STANDBY</h1>
         <video controls>
           <source src="https://i.imgur.com/5pb4eJR.mp4" type="video/mp4">
-          Your browser does not support the video tag.
+          TERMINAL ERROR: VIDEO PROTOCOL NOT SUPPORTED
         </video>
       </div>
     </div>
   </div>
 
+  <!-- Original JavaScript Preserved -->
   <script>
     function login(event) {
       event.preventDefault();
@@ -263,12 +378,12 @@
       const password = document.getElementById('password').value;
       const loginError = document.getElementById('login-error');
 
-      if (username === 'johnloyd12345' && password === 'johnloydmagno12345') {
+      if (username === 'johnloyd12345' && password === 'john12345') {
         document.getElementById('login-section').style.display = 'none';
         document.getElementById('main-section').style.display = 'block';
       } else {
         loginError.style.display = 'block';
-        loginError.textContent = 'Incorrect username or password!';
+        loginError.textContent = 'AUTH FAILURE: INVALID CREDENTIALS';
       }
     }
 
@@ -279,7 +394,7 @@
       try {
         result.style.display = 'block';
         result.className = '';
-        result.textContent = 'Processing...';
+        result.textContent = 'PROCESSING REQUEST...';
         button.disabled = true;
 
         const response = await fetch('/api/submit', {
@@ -296,14 +411,14 @@
         const data = await response.json();
         if (data.status === 200) {
           result.className = 'success';
-          result.textContent = 'Submitted successfully!';
+          result.textContent = 'OPERATION SUCCESSFUL';
         } else {
           result.className = 'error';
-          result.textContent = 'Error: ' + data.error;
+          result.textContent = 'SYSTEM ERROR: ' + data.error;
         }
       } catch (error) {
         result.className = 'error';
-        result.textContent = 'An error occurred. Please try again.';
+        result.textContent = 'NETWORK FAILURE: RETRY REQUIRED';
       } finally {
         button.disabled = false;
       }
