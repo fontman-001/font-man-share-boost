@@ -15,26 +15,23 @@
       --darker-bg: #050508;
       --panel-glow: radial-gradient(circle at center, rgba(15, 240, 252, 0.15) 0%, transparent 70%);
     }
-    
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
       font-family: 'Rajdhani', sans-serif;
       background-color: var(--dark-bg);
       color: white;
       min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       padding: 20px;
       position: relative;
-      overflow: hidden;
+      overflow-x: hidden;
     }
-    
+
     /* Cyberpunk Grid Background */
     body::before {
       content: "";
@@ -49,7 +46,7 @@
       background-size: 40px 40px;
       z-index: -2;
     }
-    
+
     /* Animated Scanlines */
     body::after {
       content: "";
@@ -69,12 +66,12 @@
       pointer-events: none;
       z-index: -1;
     }
-    
+
     @keyframes scan {
       0% { background-position: 0 0; }
       100% { background-position: 0 10px; }
     }
-    
+
     /* Main Container */
     .wrapper-container {
       width: 100%;
@@ -88,9 +85,9 @@
         0 0 30px rgba(15, 240, 252, 0.1),
         inset 0 0 15px rgba(15, 240, 252, 0.2);
       position: relative;
-      overflow: hidden;
+      margin: 0 auto;
     }
-    
+
     /* Neon Corner Accents */
     .wrapper-container::before,
     .wrapper-container::after {
@@ -101,21 +98,21 @@
       border: 2px solid var(--neon-blue);
       pointer-events: none;
     }
-    
+
     .wrapper-container::before {
       top: 10px;
       left: 10px;
       border-right: none;
       border-bottom: none;
     }
-    
+
     .wrapper-container::after {
       bottom: 10px;
       right: 10px;
       border-left: none;
       border-top: none;
     }
-    
+
     /* Typography */
     h1 {
       font-family: 'Orbitron', sans-serif;
@@ -128,7 +125,7 @@
       text-shadow: 0 0 10px var(--neon-blue);
       font-weight: 700;
     }
-    
+
     h4 {
       font-size: 1.2rem;
       color: #b0bec5;
@@ -137,14 +134,14 @@
       font-weight: 300;
       letter-spacing: 1px;
     }
-    
+
     /* Form Elements */
     .form-container {
       display: flex;
       flex-direction: column;
       gap: 25px;
     }
-    
+
     .form-item label {
       display: block;
       font-size: 1rem;
@@ -153,7 +150,7 @@
       letter-spacing: 1px;
       font-weight: 500;
     }
-    
+
     .form-item input {
       width: 100%;
       padding: 14px;
@@ -166,19 +163,19 @@
       transition: all 0.3s ease;
       border-left: 3px solid var(--neon-blue);
     }
-    
+
     .form-item input:focus {
       outline: none;
       border-color: var(--neon-blue);
       box-shadow: 0 0 15px rgba(15, 240, 252, 0.3);
       background: rgba(0, 0, 0, 0.7);
     }
-    
+
     .form-item input::placeholder {
       color: #546e7a;
       font-style: italic;
     }
-    
+
     .form-item button {
       width: 100%;
       padding: 14px;
@@ -195,13 +192,13 @@
       overflow: hidden;
       margin-top: 10px;
     }
-    
+
     .form-item button:hover {
       background: rgba(15, 240, 252, 0.1);
       text-shadow: 0 0 10px var(--neon-blue);
       box-shadow: 0 0 20px rgba(15, 240, 252, 0.4);
     }
-    
+
     .form-item button::before {
       content: "";
       position: absolute;
@@ -212,11 +209,11 @@
       background: linear-gradient(90deg, transparent, rgba(15, 240, 252, 0.4), transparent);
       transition: 0.5s;
     }
-    
+
     .form-item button:hover::before {
       left: 100%;
     }
-    
+
     /* Status Messages */
     #result, #login-error {
       display: none;
@@ -227,19 +224,19 @@
       font-weight: 500;
       letter-spacing: 1px;
     }
-    
+
     #result.success, #login-success {
       background: rgba(0, 255, 100, 0.1);
       border: 1px solid #00ff64;
       color: #00ff64;
     }
-    
+
     #result.error, #login-error {
       background: rgba(255, 0, 64, 0.1);
       border: 1px solid var(--neon-pink);
       color: var(--neon-pink);
     }
-    
+
     /* Video Container */
     video {
       width: 100%;
@@ -249,12 +246,12 @@
       border: 1px solid var(--neon-blue);
       box-shadow: 0 0 20px rgba(15, 240, 252, 0.3);
     }
-    
+
     /* Login/Main Transition */
     #login-section, #main-section {
       transition: opacity 0.5s ease;
     }
-    
+
     /* Responsive Adjustments */
     @media (max-width: 768px) {
       h1 {
@@ -269,12 +266,12 @@
         padding: 20px;
       }
     }
-    
+
     /* Cyberpunk Glitch Effect (Optional) */
     .glitch {
       position: relative;
     }
-    
+
     .glitch::before, .glitch::after {
       content: attr(data-text);
       position: absolute;
@@ -284,19 +281,19 @@
       height: 100%;
       opacity: 0.8;
     }
-    
+
     .glitch::before {
       color: #0ff;
       z-index: -1;
       animation: glitch-effect 3s infinite;
     }
-    
+
     .glitch::after {
       color: #f0f;
       z-index: -2;
       animation: glitch-effect 2s infinite reverse;
     }
-    
+
     @keyframes glitch-effect {
       0% { transform: translate(0); }
       20% { transform: translate(-3px, 3px); }
@@ -363,14 +360,14 @@
       <div class="container">
         <h1>SYSTEM STANDBY</h1>
         <video controls>
-          <source src="https://i.imgur.com/5pb4eJR.mp4" type="video/mp4">
-          TERMINAL ERROR: VIDEO PROTOCOL NOT SUPPORTED
+          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
+          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.ogv" type="video/ogg">
+          Your browser does not support HTML5 video.
         </video>
       </div>
     </div>
   </div>
 
-  <!-- Original JavaScript Preserved -->
   <script>
     function login(event) {
       event.preventDefault();
@@ -378,7 +375,7 @@
       const password = document.getElementById('password').value;
       const loginError = document.getElementById('login-error');
 
-      if (username === 'johnloyd12345' && password === 'john12345') {
+      if (username === 'john12345' && password === 'jl12345') {
         document.getElementById('login-section').style.display = 'none';
         document.getElementById('main-section').style.display = 'block';
       } else {
