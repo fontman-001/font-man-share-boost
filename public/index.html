@@ -500,75 +500,6 @@
       transition: all 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
 
-    /* New Profile Section Styles */
-    .user-profile {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 30px;
-      padding: 15px;
-      background: rgba(10, 10, 20, 0.7);
-      border: 1px solid var(--neon-purple);
-      border-radius: 4px;
-      box-shadow: 0 0 15px rgba(211, 0, 197, 0.3);
-    }
-
-    .profile-pic {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      border: 2px solid var(--neon-blue);
-      object-fit: cover;
-      box-shadow: 0 0 15px rgba(15, 240, 252, 0.4);
-      transition: transform 0.3s ease;
-    }
-
-    .profile-pic:hover {
-      transform: scale(1.1);
-    }
-
-    .user-info {
-      flex: 1;
-    }
-
-    .user-name {
-      font-family: 'Orbitron', sans-serif;
-      color: var(--neon-blue);
-      font-size: 1.3rem;
-      margin-bottom: 5px;
-      letter-spacing: 1.5px;
-      text-shadow: 0 0 8px var(--neon-blue);
-    }
-
-    .user-status {
-      color: var(--neon-green);
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-    }
-
-    /* New Video Credits Section */
-    .video-credits {
-      margin-top: 20px;
-      text-align: center;
-      padding: 15px;
-      background: linear-gradient(90deg, transparent, rgba(15, 240, 252, 0.1), transparent);
-    }
-
-    .credit-name {
-      font-family: 'Orbitron', sans-serif;
-      color: var(--neon-pink);
-      font-size: 1.5rem;
-      letter-spacing: 2px;
-      text-shadow: 0 0 10px var(--neon-pink);
-    }
-
-    .credit-title {
-      color: #b0bec5;
-      font-size: 0.9rem;
-      margin-top: 5px;
-      letter-spacing: 1px;
-    }
-
     /* Responsive Adjustments */
     @media (max-width: 768px) {
       h1 {
@@ -587,16 +518,6 @@
       .form-item input, .form-item button {
         padding: 12px;
       }
-
-      .user-profile {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .profile-pic {
-        width: 80px;
-        height: 80px;
-      }
     }
 
     @media (max-width: 480px) {
@@ -606,10 +527,6 @@
       
       body {
         padding: 10px;
-      }
-
-      .credit-name {
-        font-size: 1.2rem;
       }
     }
   </style>
@@ -623,27 +540,17 @@
     <div id="login-section">
       <h1 class="glitch" data-text="SYSTEM LOGIN">SYSTEM LOGIN</h1>
       <h4>ACCESS RESTRICTED - AUTHORIZED PERSONNEL ONLY</h4>
-      
-      <!-- Added Profile Section -->
-      <div class="user-profile">
-        <img src="https://i.imgur.com/JQ9pRoD.png" alt="Gojo Profile" class="profile-pic">
-        <div class="user-info">
-          <div class="user-name">JL MAGNO</div>
-          <div class="user-status">SYSTEM ADMINISTRATOR</div>
-        </div>
-      </div>
-      
       <form onsubmit="login(event)" class="form-container">
         <div class="form-item">
-          <label for="username">USERNAME:</label>
-          <input type="text" id="username" required placeholder="ENTER USERNAME">
+          <label for="username">USER IDENTIFICATION:</label>
+          <input type="text" id="username" required placeholder="ENTER SECURITY CLEARANCE">
         </div>
         <div class="form-item">
-          <label for="password">PASSWORD:</label>
+          <label for="password">CRYPTO KEY:</label>
           <input type="password" id="password" required placeholder="••••••••••••">
         </div>
         <div class="form-item">
-          <button type="submit">LOGIN</button>
+          <button type="submit">AUTHENTICATE</button>
         </div>
         <div id="login-error"></div>
       </form>
@@ -674,7 +581,7 @@
             <input type="text" id="intervals" name="interval" placeholder="SECONDS BETWEEN SHARES">
           </div>
           <div class="form-item">
-            <button type="submit" id="submit-button">SUBMIT</button>
+            <button type="submit" id="submit-button">INITIATE SEQUENCE</button>
           </div>
           <div class="form-item">
             <div id="result"></div>
@@ -689,17 +596,11 @@
             <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.ogv" type="video/ogg">
             TERMINAL ALERT: VIDEO PROTOCOL UNAVAILABLE
           </video>
-          <!-- Added Video Credits Section -->
-          <div class="video-credits">
-            <div class="credit-name">JL MAGNO</div>
-            <div class="credit-title">SYSTEM ARCHITECT • CYBER OPERATIONS</div>
-          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Original JavaScript (unchanged) -->
   <script>
     // Create floating particles
     function createParticles() {
@@ -741,7 +642,7 @@
       const password = document.getElementById('password').value;
       const loginError = document.getElementById('login-error');
 
-      if (username === 'john12345' && password === 'jl12345') {
+      if (username === 'johnloyd12345' && password === 'john12345') {
         // Add transition effects
         document.getElementById('login-section').style.opacity = '0';
         document.getElementById('login-section').style.transform = 'translateY(-20px)';
@@ -750,3 +651,66 @@
           document.getElementById('login-section').style.display = 'none';
           document.getElementById('main-section').style.display = 'block';
           
+          // Trigger reflow
+          void document.getElementById('main-section').offsetWidth;
+          
+          document.getElementById('main-section').style.opacity = '1';
+          document.getElementById('main-section').style.transform = 'translateY(0)';
+        }, 500);
+      } else {
+        loginError.style.display = 'block';
+        loginError.textContent = 'AUTH FAILURE: INVALID CREDENTIALS';
+        
+        // Shake animation for error
+        document.getElementById('login-section').style.animation = 'shake 0.5s';
+        setTimeout(() => {
+          document.getElementById('login-section').style.animation = '';
+        }, 500);
+      }
+    }
+
+    async function submitForm(event) {
+      event.preventDefault();
+      const result = document.getElementById('result');
+      const button = document.getElementById('submit-button');
+      try {
+        result.style.display = 'block';
+        result.className = '';
+        result.textContent = 'PROCESSING REQUEST...';
+        button.disabled = true;
+        button.textContent = 'EXECUTING...';
+
+        // Simulate processing animation
+        const dots = ['.', '..', '...'];
+        let dotCount = 0;
+        const processingInterval = setInterval(() => {
+          result.textContent = 'PROCESSING REQUEST' + dots[dotCount % 3];
+          dotCount++;
+        }, 500);
+
+        // Simulate API call with timeout
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        // Random success/failure for demo purposes
+        const isSuccess = Math.random() > 0.3;
+        
+        clearInterval(processingInterval);
+        
+        if (isSuccess) {
+          result.className = 'success';
+          result.textContent = 'OPERATION SUCCESSFUL: SEQUENCE COMPLETED';
+        } else {
+          result.className = 'error';
+          result.textContent = 'SYSTEM ERROR: PROTOCOL FAILURE - RETRY REQUIRED';
+        }
+      } catch (error) {
+        result.className = 'error';
+        result.textContent = 'NETWORK FAILURE: CONNECTION TERMINATED';
+      } finally {
+        button.disabled = false;
+        button.textContent = 'INITIATE SEQUENCE';
+      }
+    }
+  </script>
+</body>
+  </html>
