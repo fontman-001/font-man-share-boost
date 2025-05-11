@@ -3,17 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SHARE BOOST</title>
+  <title>SHARE BOOST v2.0</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    /* Cyberpunk Base */
+    /* Cyberpunk Neon Theme */
     :root {
       --neon-blue: #0ff0fc;
       --neon-pink: #ff2a6d;
       --neon-purple: #d300c5;
+      --neon-green: #00ff88;
+      --neon-yellow: #ffee00;
       --dark-bg: #0a0a12;
       --darker-bg: #050508;
       --panel-glow: radial-gradient(circle at center, rgba(15, 240, 252, 0.15) 0%, transparent 70%);
+      --panel-border: 1px solid rgba(15, 240, 252, 0.3);
     }
 
     * {
@@ -30,9 +34,10 @@
       padding: 20px;
       position: relative;
       overflow-x: hidden;
+      line-height: 1.6;
     }
 
-    /* Cyberpunk Grid Background */
+    /* Enhanced Cyberpunk Grid */
     body::before {
       content: "";
       position: absolute;
@@ -42,12 +47,14 @@
       height: 100%;
       background: 
         linear-gradient(rgba(15, 240, 252, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(15, 240, 252, 0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
+        linear-gradient(90deg, rgba(15, 240, 252, 0.03) 1px, transparent 1px),
+        linear-gradient(rgba(255, 42, 109, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 42, 109, 0.02) 1px, transparent 1px);
+      background-size: 40px 40px, 40px 40px, 20px 20px, 20px 20px;
       z-index: -2;
     }
 
-    /* Animated Scanlines */
+    /* Animated Scanlines with Glitch Effect */
     body::after {
       content: "";
       position: absolute;
@@ -55,148 +62,273 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(
-        to bottom,
-        transparent 95%,
-        rgba(15, 240, 252, 0.05) 96%,
-        transparent 97%
-      );
-      background-size: 100% 10px;
-      animation: scan 4s linear infinite;
+      background: 
+        linear-gradient(
+          to bottom,
+          transparent 95%,
+          rgba(15, 240, 252, 0.05) 96%,
+          transparent 97%
+        ),
+        linear-gradient(
+          to bottom,
+          transparent 97%,
+          rgba(255, 42, 109, 0.03) 98%,
+          transparent 99%
+        );
+      background-size: 100% 10px, 100% 5px;
+      animation: scan 4s linear infinite, glitch-scan 7s linear infinite;
       pointer-events: none;
       z-index: -1;
     }
 
     @keyframes scan {
-      0% { background-position: 0 0; }
-      100% { background-position: 0 10px; }
+      0% { background-position: 0 0, 0 0; }
+      100% { background-position: 0 10px, 0 5px; }
     }
 
-    /* Main Container */
+    @keyframes glitch-scan {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+    }
+
+    /* Main Container - Holographic Panel */
     .wrapper-container {
       width: 100%;
-      max-width: 750px;
-      background: rgba(5, 5, 8, 0.85);
-      border: 1px solid var(--neon-blue);
-      border-radius: 0;
+      max-width: 850px;
+      background: linear-gradient(135deg, rgba(5, 5, 8, 0.9) 0%, rgba(10, 10, 18, 0.9) 100%);
+      border: var(--panel-border);
+      border-radius: 4px;
       padding: 30px;
       box-shadow: 
-        0 0 15px rgba(15, 240, 252, 0.3),
-        0 0 30px rgba(15, 240, 252, 0.1),
-        inset 0 0 15px rgba(15, 240, 252, 0.2);
+        0 0 25px rgba(15, 240, 252, 0.4),
+        0 0 50px rgba(15, 240, 252, 0.15),
+        inset 0 0 20px rgba(15, 240, 252, 0.3),
+        inset 0 0 30px rgba(211, 0, 197, 0.1);
       position: relative;
-      margin: 0 auto;
+      margin: 20px auto;
+      backdrop-filter: blur(5px);
+      overflow: hidden;
     }
 
-    /* Neon Corner Accents */
-    .wrapper-container::before,
+    /* Holographic Panel Effect */
+    .wrapper-container::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to bottom right,
+        transparent 0%,
+        rgba(15, 240, 252, 0.03) 50%,
+        transparent 100%
+      );
+      animation: holographic 15s linear infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes holographic {
+      0% { transform: rotate(0deg) translate(0, 0); }
+      100% { transform: rotate(360deg) translate(0, 0); }
+    }
+
+    /* Neon Corner Accents - Animated */
     .wrapper-container::after {
       content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border: 1px solid transparent;
+      border-image: linear-gradient(
+        135deg,
+        var(--neon-blue) 0%,
+        var(--neon-pink) 50%,
+        var(--neon-purple) 100%
+      );
+      border-image-slice: 1;
+      pointer-events: none;
+      z-index: -1;
+      animation: border-pulse 8s infinite alternate;
+    }
+
+    @keyframes border-pulse {
+      0% { opacity: 0.3; }
+      100% { opacity: 0.7; }
+    }
+
+    /* Corner Brackets - Enhanced */
+    .corner-bracket {
       position: absolute;
       width: 30px;
       height: 30px;
       border: 2px solid var(--neon-blue);
       pointer-events: none;
+      z-index: 2;
     }
 
-    .wrapper-container::before {
+    .corner-bracket.top-left {
       top: 10px;
       left: 10px;
       border-right: none;
       border-bottom: none;
+      animation: flicker 3s infinite alternate;
     }
 
-    .wrapper-container::after {
+    .corner-bracket.bottom-right {
       bottom: 10px;
       right: 10px;
       border-left: none;
       border-top: none;
+      animation: flicker 4s infinite alternate-reverse;
     }
 
-    /* Typography */
+    .corner-bracket.top-right {
+      top: 10px;
+      right: 10px;
+      border-left: none;
+      border-bottom: none;
+      animation: flicker 3.5s infinite alternate;
+    }
+
+    .corner-bracket.bottom-left {
+      bottom: 10px;
+      left: 10px;
+      border-right: none;
+      border-top: none;
+      animation: flicker 4.5s infinite alternate-reverse;
+    }
+
+    @keyframes flicker {
+      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 10px var(--neon-blue);
+      }
+      20%, 22%, 24%, 55% {
+        opacity: 0.3;
+        box-shadow: none;
+      }
+    }
+
+    /* Typography - Enhanced */
     h1 {
       font-family: 'Orbitron', sans-serif;
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       color: var(--neon-blue);
       text-align: center;
       margin-bottom: 15px;
       text-transform: uppercase;
-      letter-spacing: 3px;
-      text-shadow: 0 0 10px var(--neon-blue);
+      letter-spacing: 4px;
+      text-shadow: 
+        0 0 10px var(--neon-blue),
+        0 0 20px rgba(15, 240, 252, 0.5);
       font-weight: 700;
+      position: relative;
+    }
+
+    h1::after {
+      content: "";
+      display: block;
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+      margin: 10px auto;
+      border-radius: 3px;
     }
 
     h4 {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: #b0bec5;
       text-align: center;
       margin-bottom: 30px;
       font-weight: 300;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
+      text-shadow: 0 0 5px rgba(176, 190, 197, 0.5);
     }
 
-    /* Form Elements */
+    /* Form Elements - Futuristic */
     .form-container {
       display: flex;
       flex-direction: column;
       gap: 25px;
     }
 
+    .form-item {
+      position: relative;
+    }
+
     .form-item label {
       display: block;
-      font-size: 1rem;
+      font-size: 1.1rem;
       color: var(--neon-blue);
-      margin-bottom: 8px;
-      letter-spacing: 1px;
+      margin-bottom: 10px;
+      letter-spacing: 1.5px;
       font-weight: 500;
+      text-transform: uppercase;
     }
 
     .form-item input {
       width: 100%;
-      padding: 14px;
-      font-size: 1rem;
-      background: rgba(0, 0, 0, 0.5);
+      padding: 15px;
+      font-size: 1.1rem;
+      background: rgba(0, 0, 0, 0.7);
       border: 1px solid #333;
-      border-radius: 0;
+      border-radius: 2px;
       color: white;
       font-family: 'Rajdhani', sans-serif;
       transition: all 0.3s ease;
-      border-left: 3px solid var(--neon-blue);
+      border-left: 4px solid var(--neon-blue);
+      box-shadow: 
+        inset 0 0 10px rgba(0, 0, 0, 0.5),
+        0 0 5px rgba(15, 240, 252, 0.2);
     }
 
     .form-item input:focus {
       outline: none;
       border-color: var(--neon-blue);
-      box-shadow: 0 0 15px rgba(15, 240, 252, 0.3);
-      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 
+        0 0 20px rgba(15, 240, 252, 0.5),
+        inset 0 0 10px rgba(15, 240, 252, 0.2);
+      background: rgba(0, 0, 0, 0.9);
     }
 
     .form-item input::placeholder {
       color: #546e7a;
       font-style: italic;
+      letter-spacing: 1px;
     }
 
+    /* Cyberpunk Button - Enhanced */
     .form-item button {
       width: 100%;
-      padding: 14px;
-      font-size: 1.1rem;
-      background: transparent;
+      padding: 16px;
+      font-size: 1.2rem;
+      background: linear-gradient(90deg, transparent, rgba(15, 240, 252, 0.1), transparent);
       color: var(--neon-blue);
       border: 2px solid var(--neon-blue);
       font-family: 'Orbitron', sans-serif;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       cursor: pointer;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-      margin-top: 10px;
+      margin-top: 15px;
+      text-shadow: 0 0 5px var(--neon-blue);
+      box-shadow: 
+        0 0 10px rgba(15, 240, 252, 0.3),
+        inset 0 0 10px rgba(15, 240, 252, 0.2);
     }
 
     .form-item button:hover {
-      background: rgba(15, 240, 252, 0.1);
-      text-shadow: 0 0 10px var(--neon-blue);
-      box-shadow: 0 0 20px rgba(15, 240, 252, 0.4);
+      background: linear-gradient(90deg, transparent, rgba(15, 240, 252, 0.2), transparent);
+      text-shadow: 0 0 15px var(--neon-blue);
+      box-shadow: 
+        0 0 25px rgba(15, 240, 252, 0.6),
+        inset 0 0 15px rgba(15, 240, 252, 0.3);
     }
 
     .form-item button::before {
@@ -214,48 +346,238 @@
       left: 100%;
     }
 
-    /* Status Messages */
+    .form-item button i {
+      margin-right: 10px;
+    }
+
+    /* Status Messages - Enhanced */
     #result, #login-error {
       display: none;
       padding: 15px;
       margin-top: 20px;
-      border-radius: 0;
+      border-radius: 2px;
       text-align: center;
       font-weight: 500;
       letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #result::before, #login-error::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+      z-index: -1;
     }
 
     #result.success, #login-success {
       background: rgba(0, 255, 100, 0.1);
-      border: 1px solid #00ff64;
-      color: #00ff64;
+      border: 1px solid var(--neon-green);
+      color: var(--neon-green);
+      text-shadow: 0 0 5px rgba(0, 255, 100, 0.5);
     }
 
     #result.error, #login-error {
       background: rgba(255, 0, 64, 0.1);
       border: 1px solid var(--neon-pink);
       color: var(--neon-pink);
+      text-shadow: 0 0 5px rgba(255, 0, 64, 0.5);
     }
 
-    /* Video Container */
+    /* Video Container - Futuristic */
     video {
       width: 100%;
-      max-width: 600px;
+      max-width: 700px;
       margin: 30px auto;
       display: block;
       border: 1px solid var(--neon-blue);
-      box-shadow: 0 0 20px rgba(15, 240, 252, 0.3);
+      box-shadow: 
+        0 0 25px rgba(15, 240, 252, 0.4),
+        0 0 50px rgba(15, 240, 252, 0.1);
+      background: #000;
     }
 
     /* Login/Main Transition */
     #login-section, #main-section {
-      transition: opacity 0.5s ease;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    /* New Features */
+    .status-panel {
+      background: rgba(5, 5, 8, 0.8);
+      border: var(--panel-border);
+      padding: 15px;
+      margin-bottom: 25px;
+      box-shadow: 
+        inset 0 0 10px rgba(15, 240, 252, 0.1),
+        0 0 10px rgba(15, 240, 252, 0.2);
+    }
+
+    .status-indicator {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+    }
+
+    .status-led {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+      box-shadow: 0 0 5px currentColor;
+    }
+
+    .led-green {
+      background-color: var(--neon-green);
+      animation: pulse-green 2s infinite;
+    }
+
+    .led-blue {
+      background-color: var(--neon-blue);
+      animation: pulse-blue 2.5s infinite;
+    }
+
+    .led-yellow {
+      background-color: var(--neon-yellow);
+      animation: pulse-yellow 3s infinite;
+    }
+
+    @keyframes pulse-green {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes pulse-blue {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes pulse-yellow {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.9; }
+    }
+
+    .progress-container {
+      margin-top: 20px;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 3px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+      transition: width 0.3s ease;
+      position: relative;
+    }
+
+    .progress-fill::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: progress-shine 2s infinite;
+    }
+
+    @keyframes progress-shine {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .progress-text {
+      text-align: right;
+      font-size: 0.9rem;
+      color: var(--neon-blue);
+      margin-top: 5px;
+    }
+
+    /* Toggle Switch - Cyberpunk Style */
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+    }
+
+    .toggle-label {
+      margin-right: 15px;
+      color: var(--neon-blue);
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--neon-blue);
+      transition: .4s;
+      border-radius: 30px;
+    }
+
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 4px;
+      bottom: 3px;
+      background-color: var(--neon-blue);
+      transition: .4s;
+      border-radius: 50%;
+      box-shadow: 0 0 5px var(--neon-blue);
+    }
+
+    input:checked + .toggle-slider {
+      background-color: rgba(15, 240, 252, 0.1);
+    }
+
+    input:checked + .toggle-slider:before {
+      transform: translateX(28px);
+      background-color: var(--neon-pink);
+      box-shadow: 0 0 5px var(--neon-pink);
     }
 
     /* Responsive Adjustments */
     @media (max-width: 768px) {
       h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
+        letter-spacing: 2px;
       }
       
       h4 {
@@ -265,9 +587,23 @@
       .wrapper-container {
         padding: 20px;
       }
+
+      .form-item label {
+        font-size: 1rem;
+      }
+
+      .form-item input {
+        padding: 12px;
+        font-size: 1rem;
+      }
+
+      .form-item button {
+        padding: 14px;
+        font-size: 1rem;
+      }
     }
 
-    /* Cyberpunk Glitch Effect (Optional) */
+    /* Cyberpunk Glitch Effect - Enhanced */
     .glitch {
       position: relative;
     }
@@ -283,13 +619,13 @@
     }
 
     .glitch::before {
-      color: #0ff;
+      color: var(--neon-blue);
       z-index: -1;
       animation: glitch-effect 3s infinite;
     }
 
     .glitch::after {
-      color: #f0f;
+      color: var(--neon-pink);
       z-index: -2;
       animation: glitch-effect 2s infinite reverse;
     }
@@ -302,24 +638,112 @@
       80% { transform: translate(3px, -3px); }
       100% { transform: translate(0); }
     }
+
+    /* Terminal Effect */
+    .terminal {
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid var(--neon-blue);
+      padding: 15px;
+      font-family: monospace;
+      height: 200px;
+      overflow-y: auto;
+      margin-top: 20px;
+      box-shadow: inset 0 0 10px rgba(15, 240, 252, 0.2);
+    }
+
+    .terminal-line {
+      color: var(--neon-green);
+      margin-bottom: 5px;
+      line-height: 1.4;
+    }
+
+    .terminal-line::before {
+      content: "> ";
+      color: var(--neon-blue);
+    }
+
+    /* Tooltip */
+    .tooltip {
+      position: relative;
+      display: inline-block;
+      margin-left: 10px;
+      cursor: help;
+    }
+
+    .tooltip i {
+      color: var(--neon-blue);
+      font-size: 0.9rem;
+    }
+
+    .tooltip .tooltip-text {
+      visibility: hidden;
+      width: 200px;
+      background-color: rgba(5, 5, 8, 0.9);
+      color: #fff;
+      text-align: center;
+      border: 1px solid var(--neon-blue);
+      padding: 10px;
+      border-radius: 2px;
+      position: absolute;
+      z-index: 1;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -100px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 0.9rem;
+      font-weight: normal;
+      text-transform: none;
+      letter-spacing: normal;
+    }
+
+    .tooltip:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
   <div class="wrapper-container">
+    <!-- Corner Brackets -->
+    <div class="corner-bracket top-left"></div>
+    <div class="corner-bracket top-right"></div>
+    <div class="corner-bracket bottom-left"></div>
+    <div class="corner-bracket bottom-right"></div>
+    
     <!-- Login Form -->
     <div id="login-section">
-      <h1 class="glitch" data-text="LOGIN">LOGIN</h1>
+      <h1 class="glitch" data-text="SYSTEM ACCESS">SYSTEM ACCESS</h1>
+      <h4>ENTER CREDENTIALS FOR AUTHORIZATION</h4>
+      
+      <div class="status-panel">
+        <div class="status-indicator">
+          <div class="status-item">
+            <div class="status-led led-green"></div>
+            <span>POWER: ONLINE</span>
+          </div>
+          <div class="status-item">
+            <div class="status-led led-blue"></div>
+            <span>NETWORK: SECURE</span>
+          </div>
+          <div class="status-item">
+            <div class="status-led led-yellow"></div>
+            <span>ENCRYPTION: ACTIVE</span>
+          </div>
+        </div>
+      </div>
+      
       <form onsubmit="login(event)" class="form-container">
         <div class="form-item">
           <label for="username">USERNAME:</label>
-          <input type="text" id="username" required placeholder="ENTER YOUR USERNAME">
+          <input type="text" id="username" required placeholder="ENTER ACCESS ID">
         </div>
         <div class="form-item">
           <label for="password">PASSWORD:</label>
           <input type="password" id="password" required placeholder="••••••••••••">
         </div>
         <div class="form-item">
-          <button type="submit">LOGIN</button>
+          <button type="submit"><i class="fas fa-unlock-alt"></i> LOGIN</button>
         </div>
         <div id="login-error"></div>
       </form>
@@ -328,37 +752,87 @@
     <!-- Main Project (Hidden until login) -->
     <div id="main-section" style="display: none;">
       <div class="container">
-        <h1 class="glitch" data-text="SHARE BOOST">SHARE BOOST</h1>
+        <h1 class="glitch" data-text="SHARE BOOST v2.0">SHARE BOOST v2.0</h1>
         <h4>SYSTEM INITIALIZED: READY FOR COOKIE INJECTION</h4>
+        
+        <div class="status-panel">
+          <div class="status-indicator">
+            <div class="status-item">
+              <div class="status-led led-green"></div>
+              <span>SYSTEM: OPERATIONAL</span>
+            </div>
+            <div class="status-item">
+              <div class="status-led led-blue"></div>
+              <span>API: STANDBY</span>
+            </div>
+            <div class="status-item">
+              <div class="status-led led-yellow"></div>
+              <span>SECURITY: ENABLED</span>
+            </div>
+          </div>
+          
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div class="progress-fill" id="system-load"></div>
+            </div>
+            <div class="progress-text" id="load-text">SYSTEM LOAD: 0%</div>
+          </div>
+        </div>
       </div>
+      
       <div class="form-wrapper">
         <form onsubmit="submitForm(event)" class="form-container">
           <div class="form-item">
-            <label for="cookies">APPSTATE:</label>
-            <input type="text" id="cookies" name="cookie" placeholder="ENTER YOUR APPSTATE">
+            <label for="cookies">APPSTATE: <span class="tooltip"><i class="fas fa-info-circle"></i>
+              <span class="tooltip-text">Paste your Facebook AppState here for authentication</span>
+            </span></label>
+            <input type="text" id="cookies" name="cookie" placeholder="PASTE FACEBOOK APPSTATE">
           </div>
           <div class="form-item">
-            <label for="urls">LINK:</label>
+            <label for="urls">TARGET URL: <span class="tooltip"><i class="fas fa-info-circle"></i>
+              <span class="tooltip-text">Enter the post URL you want to boost</span>
+            </span></label>
             <input type="text" id="urls" name="url" placeholder="ENTER POST URL">
           </div>
           <div class="form-item">
-            <label for="amounts">LEMIT:</label>
+            <label for="amounts">SHARE LIMIT: <span class="tooltip"><i class="fas fa-info-circle"></i>
+              <span class="tooltip-text">Maximum number of shares to perform</span>
+            </span></label>
             <input type="text" id="amounts" name="amount" placeholder="MAXIMUM SHARE COUNT">
           </div>
           <div class="form-item">
-            <label for="intervals">DELAY:</label>
+            <label for="intervals">DELAY (SEC): <span class="tooltip"><i class="fas fa-info-circle"></i>
+              <span class="tooltip-text">Seconds between each share action</span>
+            </span></label>
             <input type="text" id="intervals" name="interval" placeholder="SECONDS BETWEEN SHARES">
           </div>
+          
+          <div class="toggle-container">
+            <span class="toggle-label">RANDOMIZE DELAY:</span>
+            <label class="toggle-switch">
+              <input type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
           <div class="form-item">
-            <button type="submit" id="submit-button">SUBMIT</button>
+            <button type="submit" id="submit-button"><i class="fas fa-rocket"></i> INITIATE BOOST</button>
           </div>
           <div class="form-item">
             <div id="result"></div>
           </div>
         </form>
       </div>
+      
+      <div class="terminal">
+        <div class="terminal-line">SYSTEM BOOT SEQUENCE INITIATED...</div>
+        <div class="terminal-line">CHECKING NETWORK CONNECTIVITY...</div>
+        <div class="terminal-line">SECURITY PROTOCOLS ENGAGED...</div>
+        <div class="terminal-line">READY TO RECEIVE INPUT...</div>
+      </div>
+      
       <div class="container">
-        <h1>SYSTEM STANDBY</h1>
+        <h1>OPERATION MONITOR</h1>
         <video controls>
           <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
           <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.ogv" type="video/ogg">
@@ -369,6 +843,34 @@
   </div>
 
   <script>
+    // Simulate system load animation
+    function simulateSystemLoad() {
+      let load = 0;
+      const loadInterval = setInterval(() => {
+        load += Math.floor(Math.random() * 10);
+        if (load > 100) load = 100;
+        document.getElementById('system-load').style.width = load + '%';
+        document.getElementById('load-text').textContent = 'SYSTEM LOAD: ' + load + '%';
+        if (load === 100) clearInterval(loadInterval);
+      }, 300);
+    }
+    
+    // Initialize system load when main section is shown
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.attributeName === "style") {
+          const displayStyle = document.getElementById('main-section').style.display;
+          if (displayStyle === "block") {
+            simulateSystemLoad();
+          }
+        }
+      });
+    });
+    
+    observer.observe(document.getElementById('main-section'), {
+      attributes: true
+    });
+
     function login(event) {
       event.preventDefault();
       const username = document.getElementById('username').value;
@@ -422,4 +924,4 @@
     }
   </script>
 </body>
-                                           </html>
+</html>
